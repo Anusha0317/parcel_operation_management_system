@@ -1,11 +1,12 @@
 function addParcel() {
     let name =
-    document.getElementById("parcelName").ariaValueMax;
+    document.getElementById("parcelName").value;
     let status =
-    document.getElementById("status").ariaValueMax;
+    document.getElementById("status").value;
     let li =
-    document.createElement("li");li.textContent = name + " - " +status;
+    document.createElement("li");
+    li.textContent = name + " - " +status;
     
     document.getElementById("parcelList").appendChild(li);
-    console.log("Parecel added successfully");
+    console.log("Parcel added successfully");
 }
