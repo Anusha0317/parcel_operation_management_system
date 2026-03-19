@@ -1,62 +1,54 @@
-const API = "http://127.0.0.1:5000";
+function addParcel() {
 
-async function addParcel() {
-  const parcel_id = document.getElementById("pid").value;
-  const name = document.getElementById("name").value;
-  const status = document.getElementById("status").value;
+  let id = document.getElementById("pid").value;
+  let name = document.getElementById("name").value;
 
-  await fetch(API + "/add", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({ parcel_id, name, status })
-  });
-
-  alert("Added successfully");
-  loadParcels();
-}
-
-
-async function loadParcels() {
-  const res = await fetch(API + "/parcels");
-  const data = await res.json();
-
-  let output = "";
-
-  data.forEach(p => {
-    output += `
-      <div>
-        ${p.parcel_id} - ${p.name} - ${p.status}
-        <button onclick="deleteParcel(${p.id})">Delete</button>
-      </div>
-    `;
-  });
-
-  document.getElementById("list").innerHTML = output;
-}
-
-
-async function deleteParcel(id) {
-  await fetch(API + "/delete/" + id, { method: "DELETE" });
-  loadParcels();
-}
-
-
-async function track() {
-  const id = document.getElementById("trackId").value;
-
-  const res = await fetch(API + "/track/" + id);
-  const data = await res.json();
-
-  if (data.status) {
-    document.getElementById("result").innerHTML =
-      "Status: " + data.status;
-  } else {
-    document.getElementById("result").innerHTML =
-      "Parcel not found";
+  if (id === "" || name === "") {
+    alert("Please enter all details");
+    return;
   }
+
+  // create new element
+  let div = document.createElement("div");
+
+  // store parcel data
+  div.innerHTML = id + " - " + name + " - New";
+
+  // store id for update
+  div.setAttribute("data-id", id);
+
+  // add to page
+  document.getElementById("list").appendChild(div);
+
+  alert("Parcel added successfully");
+
+  // clear inputs
+  document.getElementById("pid").value = "";
+  document.getElementById("name").value = "";
 }
 
 
-if (document.getElementById("list")) {
-  loadParcels();
+// UPDATE PARCEL STATUS
+function updateParcel() {
+
+  let id = document.getElementById("updateId").value;
+  let status = document.getElementById("updateStatus").value;
+
+  let list = document.getElementById("list");
+  let items = list.children;
+
+  for (let i = 0; i < items.length; i++) {
+
+    if (items[i].getAttribute("data-id") == id) {
+
+      let text = items[i].innerHTML.split(" - ");
+
+      items[i].innerHTML = text[0] + " - " + text[1] + " - " + status;
+
+      alert("Status updated successfully");
+      return;
+    }
+  }
+
+  alert("Parcel not found");
 }
