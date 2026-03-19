@@ -8,27 +8,26 @@ function addParcel() {
     return;
   }
 
-  // create new element
+  
   let div = document.createElement("div");
 
-  // store parcel data
+  
   div.innerHTML = id + " - " + name + " - New";
 
-  // store id for update
+  
   div.setAttribute("data-id", id);
 
-  // add to page
   document.getElementById("list").appendChild(div);
 
   alert("Parcel added successfully");
 
-  // clear inputs
+  
   document.getElementById("pid").value = "";
   document.getElementById("name").value = "";
 }
 
 
-// UPDATE PARCEL STATUS
+
 function updateParcel() {
 
   let id = document.getElementById("updateId").value;
