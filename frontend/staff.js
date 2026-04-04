@@ -84,3 +84,24 @@ async function deleteParcel() {
     alert("Server not reachable");
   }
 }
+
+async function loadParcels() {
+
+  try {
+    let res = await fetch(API + "/parcels");
+    let data = await res.json();
+
+    let text = "";
+
+    for (let i = 0; i < data.length; i++) {
+      text += data[i].parcel_id + " - " +
+              data[i].name + " - " +
+              data[i].status + "<br>";
+    }
+
+    document.getElementById("list").innerHTML = text;
+
+  } catch (error) {
+    console.log("Error loading parcels");
+  }
+}
