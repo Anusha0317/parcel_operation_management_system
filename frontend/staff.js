@@ -92,12 +92,42 @@ async function loadParcels() {
     let data = await res.json();
 
     let text = "";
+    let total = data.length;
+    let delivered = 0;
+    let transit = 0;
+    let out = 0;
 
     for (let i = 0; i < data.length; i++) {
+
+      let statusClass = "";
+
+      if (data[i].status === "Delivered") {
+        statusClass = "status-delivered";
+        delivered++;
+      } 
+      else if (data[i].status === "In Transit") {
+        statusClass = "status-transit";
+        transit++;
+      } 
+      else if (data[i].status === "Out for Delivery") {
+        statusClass = "status-out";
+        out++;
+      } 
+      else {
+        statusClass = "status-new";
+      }
+
       text += data[i].parcel_id + " - " +
               data[i].name + " - " +
-              data[i].status + "<br>";
+              "<span class='" + statusClass + "'>" +
+              data[i].status +
+              "</span><br>";
     }
+
+    document.getElementById("totalCount").innerText = total;
+    document.getElementById("deliveredCount").innerText = delivered;
+    document.getElementById("transitCount").innerText = transit;
+    document.getElementById("outCount").innerText = out;
 
     document.getElementById("list").innerHTML = text;
 
@@ -105,3 +135,5 @@ async function loadParcels() {
     console.log("Error loading parcels");
   }
 }
+
+window.onload = loadParcels;
