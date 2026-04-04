@@ -1,8 +1,28 @@
-<h3>Track Parcel</h3>
+<html>
+<head>
+  <title>Track Parcel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<input id="trackId" placeholder="Enter Parcel ID">
-<button onclick="track()">Track</button>
+<a href="index.html" class="back">← Back</a>
 
-<div id="result"></div>
+<div class="container">
 
-<script src="script.js"></script>
+  <h2>Track Parcel</h2>
+
+  <div class="section center">
+    <input id="trackId" placeholder="Enter Parcel ID">
+    <button onclick="trackParcel()">Track</button>
+  </div>
+
+  <div class="section center">
+    <h3 id="result"></h3>
+  </div>
+
+</div>
+
+<script src="customer.js"></script>
+
+</body>
+</html>
