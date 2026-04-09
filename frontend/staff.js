@@ -2,10 +2,14 @@ const API = "http://127.0.0.1:5000";
 
 async function addParcel() {
 
-  let id = document.getElementById("pid").value;
-  let name = document.getElementById("name").value;
+  let id = document.getElementById("parcelId").value;
+  let name = document.getElementById("parcelName").value;
+  let customerName = document.getElementById("customerName").value;
+  let email = document.getElementById("email").value;
+  let address = document.getElementById("address").value;
+  let date = document.getElementById("date").value;
 
-  if (id === "" || name === "") {
+  if (id === "" || name === "" ||customerName === "" || email === "" || address === "" || date === "") {
     alert("Please enter all details");
     return;
   }
@@ -17,9 +21,14 @@ async function addParcel() {
       body: JSON.stringify({
         parcel_id: id,
         name: name,
-        status: "New"
+        status: "New",
+        customer_name: customerName,
+        email: email,
+        address: address,
+        date: date
       })
     });
+
 
     if (res.ok) {
       alert("Parcel added successfully");
