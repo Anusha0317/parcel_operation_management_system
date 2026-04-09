@@ -37,9 +37,14 @@
 
   <div class="section">
     <h3>Create New Parcel</h3>
-    <input id="pid" placeholder="Parcel ID">
-    <input id="name" placeholder="Parcel Name">
-    <button onclick="addParcel()">Add Parcel</button>
+    <input type="text" id="parcelId" placeholder="Parcel ID">
+    <input type="text" id="parcelName" placeholder="Parcel Name">
+    <input type="text" id="customerName" placeholder="Customer Name"> 
+    <input type="email" id="email" placeholder="Customer Email">
+    <input type="text" id="address" placeholder="Address">
+    <input type="date" id="date">
+<button type="button"onclick="addParcel()">Add Parcel</button>
+    <button type="button" onclick="resetCreateForm()">Reset</button>
   </div>
 
   <div class="section">
@@ -51,17 +56,25 @@
       <option>Out for Delivery</option>
       <option>Delivered</option>
     </select>
-    <button onclick="updateParcel()">Update Status</button>
+    <button type="button"onclick="updateParcel()">Update Status</button>
+    <button type="button"onclick="resetUpdateForm()">Reset</button>
   </div>
 
   <div class="section">
     <h3>Delete Parcel</h3>
     <input id="deleteId" placeholder="Enter Parcel ID">
 
-    <button class="delete-btn" onclick="deleteParcel()">
-      Delete Parcel
-    </button>
+    <button class="delete-btn" onclick="deleteParcel()">Delete Parcel</button>
+      <button type="button"onclick="resetDeleteForm()">Reset</button>
+  
   </div>
+
+  <div class="section">
+    <h3>Search Parcel</h3>
+    <input type="text" id="searchId" placeholder="Enter Parcel ID">
+    <button type="button"onclick="searchParcel()">Search Parcel</button>
+<button type="button"onclick="resetSearchForm()">Reset</button>
+</div>
 
   <div class="section">
     <h3>View All Parcels</h3>
