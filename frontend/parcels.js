@@ -9,18 +9,20 @@ try {
 
   table.innerHTML = "";
 
-  for (let i = 0; i < data.length; i++) {
-
+  data.forEach(p =>{
     let row = `
       <tr>
-        <td>${data[i].parcel_id}</td>
-        <td>${data[i].name}</td>
-        <td>${data[i].status}</td>
+        <td>${p.parcel_id}</td>
+        <td>${p.name}</td>
+        <td>${p.customer_name}</td>
+        <td>${p.email}</td>
+        <td>${p.address}</td>
+        <td>${p.date}</td>
+        <td>${p.status}</td>
       </tr>
     `;
-
     table.innerHTML += row;
-  }
+  });
 } catch (error){
   console.log("Error loading parcels");
 }
