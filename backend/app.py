@@ -76,5 +76,41 @@ def track(parcel_id):
     else:
         return jsonify({"error": "Parcel not found"}), 404
 
+@app.route("/update/<parcel_id>", methods=["PUT"])
+def update(parcel_id):
+    data = request.json
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "UPDATE parcels SET status = ? WHERE parcel_id = ?",
+        (data["status"], parcel_id)
+    )
+
+    conn.commit()
+
+    if cursor.rowcount == 0:
+        conn.close()
+        return jsonify({"error": "Parcel not found"}), 404
+
+    conn.close()
+    return jsonify({"message": "Parcel updated successfully"})
+
+
+@app.route("/delete/<parcel_id>", methods=["DELETE"])
+def delete(parcel_id):
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+
+    cursor.execute("DELETE FROM parcels WHERE parcel_id = ?", (parcel_id,))
+    conn.commit()
+
+    if cursor.rowcount == 0:
+        conn.close()
+        return jsonify({"error": "Parcel not found"}), 404
+
+    conn.close()
+    return jsonify({"message": "Parcel deleted successfully"})
+
 if __name__ == "__main__":
     app.run(debug=True)
