@@ -3,15 +3,22 @@ const API = "http://127.0.0.1:5000";
 async function trackParcel() {
 
   let id = document.getElementById("trackId").value;
-
+  if (id === "") {
+    alert("Enter Parcel ID");
+    return;
+  }
+  try {
   let res = await fetch(API + "/track/" + id);
   let data = await res.json();
 
-  if (data.status) {
+  if (res.ok) {
     document.getElementById("result").innerText =
       "Status: " + data.status;
   } else {
     document.getElementById("result").innerText =
-      "Parcel not found";
+      data.error;
   }
+} catch (error) {
+  alert("Server not reachable");
+}
 }
