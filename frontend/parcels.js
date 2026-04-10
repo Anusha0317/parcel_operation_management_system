@@ -1,11 +1,11 @@
 const API = "http://127.0.0.1:5000";
 
-async function loadTable() {
-
+async function loadParcels() {
+try {
   let res = await fetch(API + "/parcels");
   let data = await res.json();
 
-  let table = document.querySelector("#parcelTable tbody");
+  let table = document.getElementById("parcelTable");
 
   table.innerHTML = "";
 
@@ -21,6 +21,8 @@ async function loadTable() {
 
     table.innerHTML += row;
   }
+} catch (error){
+  console.log("Error loading parcels");
 }
-
-loadTable();
+}
+window.onload = loadParcels;
