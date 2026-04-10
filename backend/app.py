@@ -54,5 +54,27 @@ def add():
     finally:
         conn.close()
 
+@app.route("/track/<parcel_id>", methods=["GET"])
+def track(parcel_id):
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM parcels WHERE parcel_id = ?", (parcel_id,))
+    row = cursor.fetchone()
+    conn.close()
+
+    if row:
+        return jsonify({
+            "parcel_id": row[0],
+            "name": row[1],
+            "customer_name": row[2],
+            "email": row[3],
+            "address": row[4],
+            "date": row[5],
+            "status": row[6]
+        })
+    else:
+        return jsonify({"error": "Parcel not found"}), 404
+
 if __name__ == "__main__":
     app.run(debug=True)
