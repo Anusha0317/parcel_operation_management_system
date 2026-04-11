@@ -112,5 +112,28 @@ def delete(parcel_id):
     conn.close()
     return jsonify({"message": "Parcel deleted successfully"})
 
+@app.route("/parcels", methods=["GET"])
+def get_parcels():
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM parcels")
+    rows = cursor.fetchall()
+    conn.close()
+
+    parcels = []
+    for row in rows:
+        parcels.append({
+            "parcel_id": row[0],
+            "name": row[1],
+            "customer_name": row[2],
+            "email": row[3],
+            "address": row[4],
+            "date": row[5],
+            "status": row[6]
+        })
+
+    return jsonify(parcels)
+
 if __name__ == "__main__":
     app.run(debug=True)
