@@ -37,6 +37,24 @@ class TestParcelAPI(unittest.TestCase):
     def test_delete_parcel(self):
         response = self.client.delete("/delete/T123")
         self.assertIn(response.status_code, [200, 404])
+        
+    def test_full_flow(self):
+        self.client.post("/add", json={
+        "parcel_id": "INT1",
+        "name": "Integration Test",
+        "customer_name": "User",
+        "email": "test@test.com",
+        "address": "Dublin",
+        "date": "10-04-2026",
+        "status": "In Transit"
+        })
+
+        response = self.client.get("/parcels")
+        data = response.get_json()
+
+        found = any(p["parcel_id"] == "INT1" for p in data)
+
+        self.assertTrue(found)
 
 
 if __name__ == "__main__":
