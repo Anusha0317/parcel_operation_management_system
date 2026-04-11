@@ -154,7 +154,7 @@ function resetCreateForm() {
 }
 function resetUpdateForm() {
     document.getElementById("updateId").value = "";
-    document.getElementById("updateStatus").value = "In Transit";
+    document.getElementById("updateStatus").value = "";
 }
  function resetDeleteForm() {
     document.getElementById("deleteId").value = "";
