@@ -52,9 +52,10 @@
     <input id="updateId" placeholder="Enter Parcel ID">
 
     <select id="updateStatus">
-      <option>In Transit</option>
-      <option>Out for Delivery</option>
-      <option>Delivered</option>
+      <option value="" disabled selected>Select Status</option>
+      <option value="In Transit">In Transit</option>
+      <option value="Out for Delivery">Out for Delivery</option>
+      <option value="Delivered">Delivered</option>
     </select>
     <button type="button"onclick="updateParcel()">Update Status</button>
     <button type="button"onclick="resetUpdateForm()">Reset</button>
