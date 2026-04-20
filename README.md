@@ -194,18 +194,14 @@ The following additional resources were also referred to during development:
 - Flask Routing and API Endpoints
   https://flask.palletsprojects.com/en/latest/quickstart/
   
----
+- Deployment permission Confirmation
+  https://chatgpt.com/share/69e61ea7-38b0-83eb-971c-cee88b7bae77
 
-# AI Assistance (Extended)
+- UI updating 
+  https://chatgpt.com/share/69e220c9-2c30-83eb-9a0c-223c09459ffd
 
-In addition to general guidance, AI tools were used for:
-- Understanding REST API integration
-- Debugging frontend-backend communication issues
-- Improving JavaScript logic and error handling
-- Enhancing UI structure and usability
-
-These tools were used as a support system for learning and problem-solving, not for direct copying of complete solutions.
-
+- EC2 instance creation
+  https://youtube.com/shorts/XkhQYCAKzfY?is=rDTBUMb4DoWTVRQd\
 
 # Key Improvements Made
 Fixed API connection from localhost to deployed backend
